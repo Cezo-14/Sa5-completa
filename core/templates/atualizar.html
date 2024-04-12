@@ -1,14 +1,77 @@
-{% extends "site_app/global/base.html" %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Novo Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        button[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Atualizar Usuário</h1>
+    <div class="container-fluid mt-3">
+        <form action="{% url 'atualizar_id' usuario.id %}" method="post">
+            {% csrf_token %}
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" value="{{ usuario.nome }}" placeholder="Nome completo" />
+            <label for="email">Email:</label>
+            <input type="text" name="email" value="{{ usuario.email }}" placeholder="example@example.com" />
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+    
+    <a href="{% url 'home' %}">Voltar</a>
 
-{% block content %}
-<div class="container-fluid mt-3">
-    <form action="{% url 'atualizar' usuario.id %}" method="post">
-        {% csrf_token %}
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" value="{{ usuario.nome }}" placeholder="Nome completo" />
-        <label for="email">Email:</label>
-        <input type="text" name="email" value="{{ usuario.email }}" placeholder="example@example.com" />
-        <button type="submit">Salvar</button>
-    </form>
-</div>
-{% endblock content %}
+</body>
+</html>

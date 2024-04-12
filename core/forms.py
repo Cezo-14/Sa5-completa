@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario  # Supondo que Usuario é o nome do seu modelo de usuário
+from .models import Usuario  
 
 class UsuarioForm(forms.ModelForm):
     class Meta:

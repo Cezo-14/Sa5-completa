@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar Usuários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        strong {
+            font-weight: bold;
+            color: #007bff;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pesquisar Usuários</h1>
+    
+    <form action="{% url 'atualizar' %}" method="GET">
+        <label for="search">Pesquisar:</label>
+        <input type="text" id="search" name="search" placeholder="Digite o nome ou email">
+        <button type="submit">Buscar</button>
+    </form>
+    
+    {% if usuarios %}
+        <ul>
+            {% for usuario in usuarios %}
+                <li>
+                    <strong>Id:</strong> {{ usuario.id }} <br>
+                    <strong>Nome:</strong> {{ usuario.nome }} <br>
+                    <strong>Email:</strong> {{ usuario.email }} <br>
+                    <a href="{% url 'atualizar_id' usuario.id %}"><strong>Atualizar</strong></a> <br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum usuário cadastrado.</p>
+    {% endif %}
+    
+    <a href="{% url 'home' %}">Voltar para a Página Inicial</a>
+</body>
+</html>
